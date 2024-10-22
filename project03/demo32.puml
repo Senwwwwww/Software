@@ -1,0 +1,21 @@
+@startuml
+
+class College {
+    +buildings: List<Building>
+    +courses: List<Course>
+}
+
+class Building {
+    +name: String
+}
+
+class Course {
+    +name: String
+    +building: Building
+}
+
+College "1" *-- "n" Building : contains
+College "1" *-- "n" Course : offers
+Course "1" --> "1" Building : held_in
+
+@enduml

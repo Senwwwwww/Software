@@ -1,0 +1,33 @@
+@startuml
+
+class School {
+    +departments: List<Department>
+    +students: List<Student>
+}
+
+class Department {
+    +instructors: List<Instructor>
+    +subjects: List<Subject>
+}
+
+class Instructor {
+    +name: String
+    +teaches: List<Subject>
+}
+
+class Subject {
+    +name: String
+}
+
+class Student {
+    +name: String
+    +enrolledSubjects: List<Subject>
+}
+
+School "1" *-- "n" Department : contains
+Department "1" *-- "1..n" Instructor : has
+Instructor "1" *-- "1..n" Subject : teaches
+School "1" *-- "0..n" Student : has
+Student "1" *-- "1..5" Subject : enrolls
+
+@enduml

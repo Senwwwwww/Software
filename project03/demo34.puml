@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+class Customer {
+    - name : String
+    - deliveryAddress : Address
+    - contact : String
+    - active : boolean
+}
+class Order{
+    - createDate : Date
+    - status : Status
+}
+
+enum Status {
+    CREATE,
+    PAID,
+    SHIPPING,
+    DELIVERED,
+    CANCEL
+}
+class OrderDetail{
+    - quantity : int
+    - calculateSubTotal() : double
+    - calculateWeight() : double
+}
+class Product{
+    - title : String
+    - weight : double
+    - description : String
+    - getPriceForQuantity(int quantity) : double
+    - getWeight() : double
+    - getDescription() : String
+}
+
+abstract class Pay{
+    - amount : double
+}
+class Credit implements Pay{
+    - number : String
+    - type : String
+    - expireDate : Date
+}
+class Cash implements Pay{
+    - cashTendered : double
+}
+class WireTransfer implements Pay{
+    - bankID : String
+    - bankName : String
+}
+class AliPay implements Pay{
+    - number : String
+}
+class WeixinPay implements Pay{
+    - number : String
+}
+
+
+
+Customer "1" *-- "1..n" Order : places
+Order "1" *-- "1..n" OrderDetail : contains
+OrderDetail "1" *-- "1" Product : for
+Order "1" o-- "1" Status
+Order "1" o-- "1" Pay
+
+
+}
+@enduml
