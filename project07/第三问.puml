@@ -1,0 +1,41 @@
+@startuml
+' 设置默认语言为Java
+!define LANGUAGE java
+
+' 房价策略接口
+interface PriceStrategy {
+  + calculatePrice(basePrice: double): double
+}
+
+' 具体策略类：普通用户，按全价计算
+class NormalPriceStrategy implements PriceStrategy {
+  + calculatePrice(basePrice: double): double
+}
+
+' 具体策略类：金卡用户，8折
+class GoldCardPriceStrategy implements PriceStrategy {
+  + calculatePrice(basePrice: double): double
+}
+
+' 具体策略类：银卡用户，9折
+class SilverCardPriceStrategy implements PriceStrategy {
+  + calculatePrice(basePrice: double): double
+}
+
+' 用户类，持有一个策略对象
+class User {
+  - priceStrategy: PriceStrategy
+  + User(priceStrategy: PriceStrategy)
+  + calculatePrice(basePrice: double): double
+}
+
+' 房间类，用于表示酒店的房间
+class Room {
+  - basePrice: double
+  + Room(basePrice: double)
+  + getBasePrice(): double
+}
+
+User --> PriceStrategy : 持有策略
+Room --> User : 用户预定房间
+@enduml

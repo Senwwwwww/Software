@@ -1,0 +1,37 @@
+@startuml
+' 设置默认语言为Java
+!define LANGUAGE java
+
+' FlyBehavior接口，定义飞行行为
+interface FlyBehavior {
+  + fly(): void
+}
+
+' Bird抽象类，鸟类的共同特性
+abstract class Bird {
+  - flyBehavior: FlyBehavior
+  + display(): void
+  + performFly(): void
+}
+
+' 实现不同飞行行为的类
+class FlyWithWings implements FlyBehavior {
+  + fly(): void
+}
+
+class FlyNoWay implements FlyBehavior {
+  + fly(): void
+}
+
+' 具体鸟类：麻雀
+class Sparrow extends Bird {
+  + display(): void
+}
+
+' 具体鸟类：老鹰
+class Eagle extends Bird {
+  + display(): void
+}
+
+Bird o-> FlyBehavior : 具有飞行行为
+@enduml

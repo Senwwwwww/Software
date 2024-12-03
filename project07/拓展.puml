@@ -1,0 +1,60 @@
+@startuml
+' 设置默认语言为Java
+!define LANGUAGE java
+
+' FlyBehavior接口，定义飞行行为
+interface FlyBehavior {
+  + fly(): void
+}
+
+' SwimBehavior接口，定义游泳行为
+interface SwimBehavior {
+  + swim(): void
+}
+
+' Bird抽象类，鸟类的共同特性
+abstract class Bird {
+  - flyBehavior: FlyBehavior
+  - swimBehavior: SwimBehavior
+  + display(): void
+  + performFly(): void
+  + performSwim(): void
+}
+
+' 实现不同飞行行为的类
+class FlyWithWings implements FlyBehavior {
+  + fly(): void
+}
+
+class FlyNoWay implements FlyBehavior {
+  + fly(): void
+}
+
+class UnableFly implements FlyBehavior {
+  + fly(): void
+}
+
+' 实现不同游泳行为的类
+class AbleSwim implements SwimBehavior {
+  + swim(): void
+}
+
+class UnableSwim implements SwimBehavior {
+  + swim(): void
+}
+
+' 具体鸟类：老鹰
+class Eagle extends Bird {
+  + display(): void
+  + Eagle()
+}
+
+' 具体鸟类：企鹅
+class Penguin extends Bird {
+  + display(): void
+  + Penguin()
+}
+
+Bird o--> FlyBehavior : 具有飞行行为
+Bird o--> SwimBehavior : 具有游泳行为
+@enduml
